@@ -1,0 +1,2 @@
+const e=document.querySelector("form");let o=document.querySelector('[name="delay"]'),n=document.querySelector('[name="step"]'),t=document.querySelector('[name="amount"]');console.log(o),console.log(n),console.log(t),e.addEventListener("submit",(function(e){e.preventDefault(),function(e,n){const t=Math.random()>.3,c=1e3*o.value;console.log(c),new Promise(((o,l)=>{setTimeout((()=>{t?o(e,n,console.log("success")):l(e,n)}),c)}))}()}));
+//# sourceMappingURL=03-promises.e5f2ebb2.js.map
