@@ -6,16 +6,18 @@ let position = 0;
 
 formRef.addEventListener('submit', onSubmit)
 
+
+
 function onSubmit(event) {
   
   event.preventDefault()
   let delay = document.querySelector('[name="delay"]').value;
-let step = document.querySelector('[name="step"]').value;
-let amount = document.querySelector('[name="amount"]').value;
-
+  let step = document.querySelector('[name="step"]').value;
+  let amount = document.querySelector('[name="amount"]').value;
+  position += 1;
   createPromise(position, delay)
-  .then(onSuccess)
-  .catch(onError)
+    .then(onSuccess)
+    .catch(onError)
 }
 
 function createPromise(position, delay) {
