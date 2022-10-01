@@ -13,14 +13,15 @@ function onSubmit(event) {
   event.preventDefault();
   let delay = document.querySelector('[name="delay"]').value;
   let amount = document.querySelector('[name="amount"]').value;
-  position += 1;
 
-  createPromise(position, delay).then(onSuccess).catch(onError);
+  for (let i = 0; i < amount; i++) {
+    position += 1;
+    createPromise(position, delay).then(onSuccess).catch(onError);
+  }
 }
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
-  // const timeout = delay + step;
   return new Promise((resolve, reject) => {
     // Asynchronous operation
     setTimeout(() => {
@@ -36,7 +37,6 @@ function createPromise(position, delay) {
 }
 function onSuccess({ position, delay }) {
   Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
-  // createPromise(position, delay).then(onSuccess).catch(onError);
 }
 function onError({ position, delay }) {
   Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
