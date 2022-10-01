@@ -1,49 +1,43 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 const formRef = document.querySelector('form');
 let position = 0;
+let step = document.querySelector('[name="step"]');
 
 // console.log(step);
 // console.log(amount);
 
-formRef.addEventListener('submit', onSubmit)
-
-
+formRef.addEventListener('submit', onSubmit);
 
 function onSubmit(event) {
-  
-  event.preventDefault()
+  event.preventDefault();
   let delay = document.querySelector('[name="delay"]').value;
-  let step = document.querySelector('[name="step"]').value;
   let amount = document.querySelector('[name="amount"]').value;
   position += 1;
-  createPromise(position, delay)
-    .then(onSuccess)
-    .catch(onError)
+
+  createPromise(position, delay).then(onSuccess).catch(onError);
 }
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
+  // const timeout = delay + step;
   return new Promise((resolve, reject) => {
     // Asynchronous operation
-    setTimeout(()=>{
+    setTimeout(() => {
       if (shouldResolve) {
         // Fulfill
-        ;
-        resolve({position, delay})
-        ;
+        resolve({ position, delay });
       } else {
         // Reject
-        reject({position, delay})
+        reject({ position, delay });
       }
-    },delay)
-    
+    }, delay);
   });
-  
 }
-function onSuccess({position, delay}) {
-  console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-} 
-function onError({position, delay}) {
-  console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+function onSuccess({ position, delay }) {
+  Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+  // createPromise(position, delay).then(onSuccess).catch(onError);
 }
-
-
+function onError({ position, delay }) {
+  Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+}
