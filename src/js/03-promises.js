@@ -2,6 +2,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const formRef = document.querySelector('form');
 let position = 0;
+let timeout = 0;
 
 // console.log(step);
 // console.log(amount);
@@ -10,25 +11,14 @@ formRef.addEventListener('submit', onSubmit);
 
 function onSubmit(event) {
   event.preventDefault();
-  let delay = document.querySelector('[name="delay"]').value;
-  let step = document.querySelector('[name="step"]').value;
-  let amount = document.querySelector('[name="amount"]').value;
-
-  // -----SETINTERVAL--------
-  // const timerId = setInterval(() => {
-  //   position += 1;
-  //   console.log('abab');
-  //   createPromise(position, delay).then(onSuccess).catch(onError);
-  //   if (position >= amount) {
-  //     clearInterval(timerId);
-  //   }
-  // }, step);
-
-  // ----------FORLOOP---------
+  let delay = Number(document.querySelector('[name="delay"]').value);
+  let step = Number(document.querySelector('[name="step"]').value);
+  let amount = Number(document.querySelector('[name="amount"]').value);
 
   for (let i = 0; i < amount; i++) {
     position += 1;
     createPromise(position, delay).then(onSuccess).catch(onError);
+    delay += step;
   }
 }
 
