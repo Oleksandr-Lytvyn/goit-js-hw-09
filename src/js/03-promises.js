@@ -15,6 +15,10 @@ function onSubmit(event) {
   let step = Number(document.querySelector('[name="step"]').value);
   let amount = Number(document.querySelector('[name="amount"]').value);
 
+  if (delay < 0 || step < 0 || amount < 0) {
+    return window.alert('Please choose positive number');
+  }
+
   for (let i = 0; i < amount; i++) {
     position += 1;
     createPromise(position, delay).then(onSuccess).catch(onError);
