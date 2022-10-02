@@ -8,6 +8,19 @@ const hoursRef = document.querySelector('[data-hours]');
 const minutesRef = document.querySelector('[data-minutes]');
 const secondsRef = document.querySelector('[data-seconds]');
 
+const fieldRef = document.querySelectorAll('.field');
+const valueRef = document.querySelectorAll('[class="value"]');
+
+inputRef.style.marginBottom = '20px';
+valueRef.forEach(element => {
+  element.style.color = 'white';
+});
+fieldRef.forEach(element => {
+  element.style.backgroundColor = 'green';
+  element.style.border = '1px solid black';
+  element.style.width = '120px';
+});
+
 let fp = null;
 let deadline = null;
 let timerId = null;
